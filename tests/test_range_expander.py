@@ -9,3 +9,9 @@ def test_basic_range_expansion():
 def test_whitespace_and_empty():
     assert expand_range(" , 1-3 , ,5 ") == [1, 2, 3, 5]
     assert expand_range("1, ,3-4,,") == [1, 3, 4]
+
+def test_custom_delimiters():
+    assert expand_range("1..3") == [1, 2, 3]
+    assert expand_range("4~6") == [4, 5, 6]
+    assert expand_range("10 to 12") == [10, 11, 12]
+    assert expand_range("1-2,3..5,7~9") == [1, 2, 3, 4, 5, 7, 8, 9]
