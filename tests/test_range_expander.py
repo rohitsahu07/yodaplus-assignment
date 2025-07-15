@@ -17,9 +17,9 @@ def test_custom_delimiters():
     assert expand_range("1-2,3..5,7~9") == [1, 2, 3, 4, 5, 7, 8, 9]
 
 def test_reversed_and_single_point_ranges():
-    assert expand_range("5-3") == [5, 4, 3]
+    assert expand_range("5-3") == [3, 4, 5]
     assert expand_range("3-3") == [3]
-    assert expand_range("10..8,3 to 3") == [10, 9, 8, 3]
+    assert expand_range("10..8,3 to 3") == [3, 8, 9, 10]
 
 def test_invalid_input():
     with pytest.raises(ValueError):
@@ -29,5 +29,5 @@ def test_invalid_input():
 
 def test_step_values():
     assert expand_range("1-10:2") == [1, 3, 5, 7, 9]
-    assert expand_range("10-1:3") == [10, 7, 4, 1]
+    assert expand_range("10-1:3") == [1, 4, 7, 10]
     assert expand_range("1..5:2,7-9") == [1, 3, 5, 7, 8, 9]

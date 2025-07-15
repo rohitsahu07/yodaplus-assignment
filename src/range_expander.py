@@ -27,4 +27,5 @@ def expand_range(input_string, delimiters=('-', '..', 'to', '~'), step_delimiter
         except ValueError:
             raise ValueError(f"Invalid input: '{token}' is not a valid number or range")
     
-    return result
+    # Remove duplicates and sort
+    return sorted(set(result))
