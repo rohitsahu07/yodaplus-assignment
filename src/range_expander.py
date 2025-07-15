@@ -1,4 +1,7 @@
-def expand_range(input_string, delimiters=('-', '..', 'to', '~'), step_delimiter=':'):
+def expand_range(input_string, delimiters=('-', '..', 'to', '~'), step_delimiter=':', output_format='list'):
+    if output_format not in ('list', 'csv', 'set'):
+        raise ValueError(f"Invalid output format: '{output_format}'. Supported formats: list, csv, set")
+    
     result = []
     tokens = [token.strip() for token in input_string.strip().split(',')]
     tokens = [token for token in tokens if token]
@@ -28,4 +31,12 @@ def expand_range(input_string, delimiters=('-', '..', 'to', '~'), step_delimiter
             raise ValueError(f"Invalid input: '{token}' is not a valid number or range")
     
     # Remove duplicates and sort
-    return sorted(set(result))
+    result = sorted(set(result))
+    
+    # Return in specified format
+    if output_format == 'list':
+        return result
+    elif output_format == 'csv':
+        return ','.join(map(str, result))
+    elif output_format == 'set':
+        return set(result)
