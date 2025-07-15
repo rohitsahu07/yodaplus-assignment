@@ -26,3 +26,8 @@ def test_invalid_input():
         expand_range("3-a")
     with pytest.raises(ValueError):
         expand_range("1-2,a-5")
+
+def test_step_values():
+    assert expand_range("1-10:2") == [1, 3, 5, 7, 9]
+    assert expand_range("10-1:3") == [10, 7, 4, 1]
+    assert expand_range("1..5:2,7-9") == [1, 3, 5, 7, 8, 9]
