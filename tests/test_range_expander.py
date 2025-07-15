@@ -5,3 +5,7 @@ def test_basic_range_expansion():
     assert expand_range("1-3") == [1, 2, 3]
     assert expand_range("5") == [5]
     assert expand_range("1-2,4") == [1, 2, 4]
+
+def test_whitespace_and_empty():
+    assert expand_range(" , 1-3 , ,5 ") == [1, 2, 3, 5]
+    assert expand_range("1, ,3-4,,") == [1, 3, 4]
